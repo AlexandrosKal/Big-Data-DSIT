@@ -94,7 +94,7 @@ def exact_Jaccard(train, test, threshold):
     print("\n\texact jaccard query time is:", querytime - starttime, "\n", flush=True)
 
     print("\n\texact jaccard duplicates", duplicates, "\n", file=out, flush=True)
-    print("\nlove", duplicates, flush=True)
+    print("\nduplicates", duplicates, flush=True)
     return duplicates
 
 
@@ -235,7 +235,7 @@ def lsh_cosine(train_v, test_v, k, threshold, out):
 
     print("\n\tlsh random projection query time is:", querytime - starttime, "\n", file=out, flush=True)
     print("\n\tlsh cosine duplicates", duplicates, "\n", file=out, flush=True)
-    print("\nlove", duplicates, flush=True)
+    print("\nduplicates", duplicates, flush=True)
 
 
 if __name__ == '__main__':
@@ -270,8 +270,8 @@ if __name__ == '__main__':
         """
 
         # Jaccard similarity duplicates train test exact case next
-        #result = exact_Jaccard(words_train, words_test, 0.80)
-        #print("Jaccard duplicates:", result)
+        result = exact_Jaccard(words_train, words_test, 0.80)
+        print("Jaccard duplicates:", result)
 
         # LSH family minhash case
         permutations = [16, 32, 64]
