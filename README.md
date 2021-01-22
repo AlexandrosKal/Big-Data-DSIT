@@ -1,3 +1,4 @@
 # DSIT Big-Data-Analytics Project
-## Alexandros Kalimeris
-## Antonis Papadakis
+## Authors
+-Alexandros Kalimeris
+-Antonis Papadakis
