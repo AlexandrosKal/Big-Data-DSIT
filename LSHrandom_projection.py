@@ -27,16 +27,16 @@ class Hashtable:
         :param vector: input vector
         :return: return the bitwise hash
         """
-        hash = ((vector @ self.randVectors.T) > 0).astype('int')  # if above hyperplane then 1 else 0
-        return np.array_str(hash)  # returning the bitwise hash
+        # if above hyperplane then 1 else 0
+        return np.array_str(((vector @ self.randVectors.T) > 0).astype('int'))  # returning the bitwise hash
 
     def __setitem__(self, vector, datalabel):
         """
         :param vector: input vector
         :param datalabel: label of vector in dataset
         """
-        hash = self.hashing(vector)
-        self.hashtable[hash].append(vector)  # appending vector label to bin
+
+        self.hashtable[self.hashing(vector)].append(vector)  # appending vector label to bin
 
     def __getitem__(self, vector):
         """
@@ -47,9 +47,12 @@ class Hashtable:
         return self.hashtable.get(hash, [])
 
 
+#we didnt use this class directly for the assignment due to the time penalty instead a more
+#direct implementation using just the hashtable class was used and some inline coding
+#however this class is usable and correct for another application
 class LSH_RP:
     """
-    This class is used to perform LSH random proections using vector inputs
+    This class is used to perform LSH random projections using vector inputs
     """
 
     def __init__(self, l, k, d):
@@ -71,6 +74,7 @@ class LSH_RP:
         :param vector: input vector
         :param datalabel: vector datalabel
         """
+
         for ht in self.hashtables:
             ht[vector] = vector
 
