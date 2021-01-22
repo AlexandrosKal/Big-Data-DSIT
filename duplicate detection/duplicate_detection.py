@@ -1,25 +1,19 @@
 import pandas as pd
 import timeit
-import numpy as np
-import xgboost as xgb
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn import preprocessing
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import CountVectorizer, HashingVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 from sklearn.svm import LinearSVC
-from scipy.sparse import hstack, coo_matrix, csr_matrix
+from scipy.sparse import hstack, coo_matrix
 from text_classification import cross_val as cv
 
 def duplicate_detection(train_set_df, use_custom_feats):
     stopwords = ENGLISH_STOP_WORDS
     # Vectorization
     # vc = CountVectorizer(stop_words=stopwords, ngram_range=(1, 2))
-    vc = CountVectorizer(stop_words=stopwords)
-    #vc = HashingVectorizer(n_features=500_000, stop_words=stopwords, ngram_range=(1, 3))
+    # vc = CountVectorizer(stop_words=stopwords)
+    vc = HashingVectorizer(stop_words=stopwords, ngram_range=(1, 3))
 
 
     # fit on the combined questions
@@ -45,29 +39,28 @@ def duplicate_detection(train_set_df, use_custom_feats):
         final_train_set = hstack((q1_train, q2_train))
 
 
+
     # Labels to integers encoding
     le = preprocessing.LabelEncoder()
     y = le.fit_transform(train_set_df["IsDuplicate"])
 
     print('Shape of training set: ', final_train_set.shape)
-    #clf = LinearSVC(random_state=0, tol=1e-5, C=0.1, loss='hinge', max_iter=20000, class_weight='balanced')
-    clf = xgb.XGBClassifier(n_jobs=-1, max_depth=4, subsample=0.8)
-    cv.cross_val(clf, final_train_set, y, to_file=False, alg='SVM')
+    clf = LinearSVC(random_state=0, tol=1e-5, C=0.1, loss='hinge', max_iter=100000, class_weight='balanced')
+    cv.cross_val(clf, final_train_set, y, to_file=True, alg='duplicate_detection_svm_tfidf_hash_feats')
 
 
 def duplicate_detection_pred(train_set_df, test_set_df, use_custom_feats):
     stopwords = ENGLISH_STOP_WORDS
     # Vectorization
     # vc = CountVectorizer(stop_words=stopwords, ngram_range=(1, 2))
-    vc = CountVectorizer(stop_words=stopwords)
-    # vc = HashingVectorizer(stop_words=stopwords, ngram_range=(1, 3))
+    # vc = CountVectorizer(stop_words=stopwords)
+    vc = HashingVectorizer(stop_words=stopwords, ngram_range=(1, 3))
 
     # fit on the combined questions
     X = vc.fit_transform(train_set_df['Question1'].astype('str') + ' ' + train_set_df['Question2'].astype('str'))
     transformer = TfidfTransformer()
     X = transformer.fit_transform(X)
     print(X.shape)
-
 
     q1_train = vc.transform(train_set_df['Question1'].astype('str'))
     q2_train = vc.transform(train_set_df['Question2'].astype('str'))
@@ -102,14 +95,14 @@ def duplicate_detection_pred(train_set_df, test_set_df, use_custom_feats):
     print('Shape of training set: ', final_train_set.shape)
     print('Shape of test set: ', final_test_set.shape)
     print('Fitting model...')
-    #clf = LinearSVC(random_state=0, tol=1e-5, C=1, loss='hinge', max_iter=100000, class_weight='balanced')
-    clf = xgb.XGBClassifier(n_jobs=-1, max_depth=4, subsample=0.8)
+    clf = LinearSVC(random_state=0, tol=1e-5, C=0.1, loss='hinge', max_iter=100000, class_weight='balanced')
     start = timeit.default_timer()
     clf.fit(final_train_set, train_set_df['IsDuplicate'])
     end = timeit.default_timer()
     print('Time to fit:', end-start)
     pred = clf.predict(final_test_set)
     return pred
+
 
 if __name__ == "__main__":
 
@@ -123,12 +116,10 @@ if __name__ == "__main__":
         path_test = './test_without_labels.csv'
     train_set_df = pd.read_csv(path, sep=',')
     test_set_df = pd.read_csv(path_test, sep=',')
-    train_set_df = train_set_df[:50000]
+    train_set_df = train_set_df
     duplicate_detection(train_set_df, use_custom_feats)
 
     #generate predictions for kaggle
-
-    # pred = duplicate_detection_pred(train_set_df, test_set_df, use_custom_feats)
-
-    # pred_df = pd.DataFrame(data={"Predicted": pred}, index=test_set_df['Id'])
-    # pred_df.to_csv('testSet_categories.csv')
+    #pred = duplicate_detection_pred(train_set_df, test_set_df, use_custom_feats)
+    #pred_df = pd.DataFrame(data={"Predicted": pred}, index=test_set_df['Id'])
+    #pred_df.to_csv('testSet_categories.csv')

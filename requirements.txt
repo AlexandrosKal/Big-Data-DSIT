@@ -1,0 +1,10 @@
+pandas
+numpy
+pillow
+wordcloud
+scipy
+scikit-learn
+pytest-timeit
+nltk
+fuzzywuzzy
+gensim
