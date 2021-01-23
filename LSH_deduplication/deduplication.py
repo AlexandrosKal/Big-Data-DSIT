@@ -282,7 +282,7 @@ if __name__ == '__main__':
         # exact cosine
         exact_cosine(train_v, test_v, 0.8, out)
 
-        # LSH random proection family cosine case
+        # LSH random projection family cosine case
         k = list(range(1, 11))
         for i in k:
             print("lsh random projection k = ", i, file=out,flush=True)
