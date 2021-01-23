@@ -1,0 +1,207 @@
+Exact Jaccard build time 
+
+
+Exact jaccard query time is: 2149.7387567330006 
+
+
+Exact jaccard duplicates 5612 
+
+
+exact cosine
+
+exact cosine execution time 17.6371944
+
+exact cosine duplicates 1728 
+
+4 shingles
+
+lsh minhash permutations 
+ 16
+	lsh minhash build time 
+
+	lsh minhash build time is: 858.4476212370009
+	lsh minhash query time 
+
+	lsh minhash query execution time 21.861149156000465
+
+lsh minhash duplicates 5368 
+
+lsh minhash permutations 
+ 32
+	lsh minhash build time 
+
+	lsh minhash build time is: 953.8681538649998
+	lsh minhash query time 
+
+	lsh minhash query execution time 9.493068752999534
+
+lsh minhash duplicates 3173 
+
+lsh minhash permutations 
+ 64
+	lsh minhash build time 
+
+	lsh minhash build time is: 1162.6014548219991
+	lsh minhash query time 
+
+	lsh minhash query execution time 11.832055742001103
+
+lsh minhash duplicates 740 
+
+8-shingles
+
+lsh minhash permutations 
+ 16
+	lsh minhash build time 
+
+	lsh minhash build time is: 630.990355852
+	lsh minhash query time 
+
+	lsh minhash query execution time 7.351810840000326
+
+	lsh minhash duplicates 4407 
+
+lsh minhash permutations 
+ 32
+	lsh minhash build time 
+
+	lsh minhash build time is: 702.9970095069998
+	lsh minhash query time 
+
+	lsh minhash query execution time 7.003305278999505
+
+	lsh minhash duplicates 1505 
+
+lsh minhash permutations 
+ 64
+	lsh minhash build time 
+
+	lsh minhash build time is: 855.2608874380003
+	lsh minhash query time 
+
+	lsh minhash query execution time 8.384870928000055
+
+	lsh minhash duplicates 388 
+
+
+
+lsh random projection k =  1
+	lsh random projection build time 
+
+	lsh random projection build time is: 96.07912619999999
+
+	lsh random projection query
+
+	lsh random projection query time is: 393.1899364 
+
+
+	lsh cosine duplicates 1590 
+
+lsh random projection k =  2
+	lsh random projection build time 
+
+	lsh random projection build time is: 803.6208918
+
+	lsh random projection query
+
+	lsh random projection query time is: 198.85876409999992 
+
+
+	lsh cosine duplicates 1433 
+
+lsh random projection k =  3
+	lsh random projection build time 
+
+	lsh random projection build time is: 1076.6325213
+
+	lsh random projection query
+
+	lsh random projection query time is: 107.45209849999992 
+
+
+	lsh cosine duplicates 1324 
+
+lsh random projection k =  4
+	lsh random projection build time 
+
+	lsh random projection build time is: 1331.6971427999997
+
+	lsh random projection query
+
+	lsh random projection query time is: 62.482505400000264 
+
+
+	lsh cosine duplicates 1222 
+
+lsh random projection k =  5
+	lsh random projection build time 
+
+	lsh random projection build time is: 1591.1120301
+
+	lsh random projection query
+
+	lsh random projection query time is: 40.562946699999884 
+
+
+	lsh cosine duplicates 1104 
+
+lsh random projection k =  6
+	lsh random projection build time 
+
+	lsh random projection build time is: 1808.7215775999994
+
+	lsh random projection query
+
+	lsh random projection query time is: 34.10719929999959 
+
+
+	lsh cosine duplicates 1036 
+
+lsh random projection k =  7
+	lsh random projection build time 
+
+	lsh random projection build time is: 1976.6919316000003
+
+	lsh random projection query
+
+	lsh random projection query time is: 29.81843459999982 
+
+
+	lsh cosine duplicates 990 
+
+lsh random projection k =  8
+	lsh random projection build time 
+
+	lsh random projection build time is: 2058.2695256000006
+
+	lsh random projection query
+
+	lsh random projection query time is: 31.218345500001305 
+
+
+	lsh cosine duplicates 899 
+
+lsh random projection k =  9
+	lsh random projection build time 
+
+	lsh random projection build time is: 2275.2483728999996
+
+	lsh random projection query
+
+	lsh random projection query time is: 30.186346999998932 
+
+
+	lsh cosine duplicates 839 
+
+lsh random projection k =  10
+	lsh random projection build time 
+
+	lsh random projection build time is: 2587.7060392000003
+
+	lsh random projection query
+
+	lsh random projection query time is: 33.52407289999974 
+
+
+	lsh cosine duplicates 799 
+
