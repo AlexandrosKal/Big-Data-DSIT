@@ -106,7 +106,7 @@ def LSH_minhash(t, permutations, shingles_train, out):
     print("\tlsh minhash build time \n", file=out, flush=True)
 
     # bands aka LSH hash functions
-    b = 8
+    b = int(8 * permutations/16)
     # rows -> rows * bands  constant
     r = int(permutations / b)
 
