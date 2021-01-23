@@ -8,3 +8,4 @@ pytest-timeit
 nltk
 fuzzywuzzy
 gensim
+datasketch
